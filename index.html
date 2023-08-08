@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <button id="button">Button</button>
+    <ul id="ul"></ul>
+    <script>
+      const button = document.querySelector("#button");
+      button.addEventListener("click", function () {
+        console.log(button);
+      });
+      const ul = document.querySelector("#ul");
+      function eachLi(data) {
+        return `<li>${data}</li>`;
+      }
+      console.log(button);
+      fetch("https://jsonplaceholder.typicode.com/users")
+        .then((res) => res.json())
+        .then((data) => {
+          let allLi = "";
+          data.forEach((d) => (allLi += eachLi(d.name)));
+          ul.innerHTML = allLi;
+        });
+    </script>
+  </body>
+</html>
